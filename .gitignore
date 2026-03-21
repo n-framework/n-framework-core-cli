@@ -1,4 +1,3 @@
-### DotnetCore ###
 # .NET Core build folders
 bin/
 obj/
@@ -6,3 +5,11 @@ obj/
 # Common node modules locations
 /node_modules
 /wwwroot/node_modules
+
+# Agent and local tooling metadata
+.agents/
+.claude/
+.serena/
+.specify/
+AGENTS.md
+CLAUDE.md
