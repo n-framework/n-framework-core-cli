@@ -31,7 +31,7 @@ public class SpectreConsoleUiServiceCollectionExtensionsTests
             IServiceCollection services = new ServiceCollection();
 
             // Act
-            services.AddCoreCliSpectreConsoleUi();
+            _ = services.AddCoreCliSpectreConsoleUi();
 
             // Assert
             ServiceProvider serviceProvider = services.BuildServiceProvider();
@@ -48,7 +48,7 @@ public class SpectreConsoleUiServiceCollectionExtensionsTests
             IServiceCollection services = new ServiceCollection();
 
             // Act
-            services.AddCoreCliSpectreConsoleUi();
+            _ = services.AddCoreCliSpectreConsoleUi();
 
             // Assert
             ServiceProvider serviceProvider = services.BuildServiceProvider();
@@ -65,13 +65,13 @@ public class SpectreConsoleUiServiceCollectionExtensionsTests
             IServiceCollection services = new ServiceCollection();
 
             // Act
-            services.AddCoreCliSpectreConsoleUi();
+            _ = services.AddCoreCliSpectreConsoleUi();
 
             // Assert
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             ITerminalSession session = serviceProvider.GetRequiredService<ITerminalSession>();
 
-            session.ShouldBeOfType<SpectreConsoleTerminalSession>();
+            _ = session.ShouldBeOfType<SpectreConsoleTerminalSession>();
         }
 
         [Fact]
@@ -97,13 +97,13 @@ public class SpectreConsoleUiServiceCollectionExtensionsTests
             IServiceCollection services = new ServiceCollection();
 
             // Act
-            services.AddCoreCliSpectreConsoleUi();
-            services.AddCoreCliSpectreConsoleUi();
+            _ = services.AddCoreCliSpectreConsoleUi();
+            _ = services.AddCoreCliSpectreConsoleUi();
 
             // Assert - Should not throw, services are registered as singletons so duplicate calls are safe
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             ITerminalSession session = serviceProvider.GetRequiredService<ITerminalSession>();
-            session.ShouldNotBeNull();
+            _ = session.ShouldNotBeNull();
         }
     }
 }

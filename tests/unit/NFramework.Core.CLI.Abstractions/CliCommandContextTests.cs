@@ -48,7 +48,7 @@ public class CliCommandContextTests
             IReadOnlyList<string> arguments = Array.Empty<string>();
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new CliCommandContext(name!, arguments));
+            _ = Should.Throw<ArgumentException>(() => new CliCommandContext(name!, arguments));
         }
 
         [Fact]
@@ -58,7 +58,7 @@ public class CliCommandContextTests
             string name = "test-command";
 
             // Act & Assert
-            Should.Throw<ArgumentNullException>(() => new CliCommandContext(name, null!));
+            _ = Should.Throw<ArgumentNullException>(() => new CliCommandContext(name, null!));
         }
     }
 
@@ -73,7 +73,7 @@ public class CliCommandContextTests
 
             // Act & Assert - Verify that Name property cannot be set
             string name = context.Name;
-            name.ShouldNotBeNull();
+            _ = name.ShouldNotBeNull();
         }
 
         [Fact]
@@ -85,7 +85,7 @@ public class CliCommandContextTests
 
             // Act & Assert - Verify that Arguments property cannot be set
             IReadOnlyList<string> args = context.Arguments;
-            args.ShouldNotBeNull();
+            _ = args.ShouldNotBeNull();
         }
     }
 

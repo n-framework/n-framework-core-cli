@@ -30,7 +30,7 @@ public class CliApplicationAttributeTests
         public void ThrowsArgumentException_WhenNameIsNullOrWhiteSpace(string? name)
         {
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new CliApplicationAttribute(name!));
+            _ = Should.Throw<ArgumentException>(() => new CliApplicationAttribute(name!));
         }
     }
 
@@ -44,7 +44,7 @@ public class CliApplicationAttributeTests
 
             // Act & Assert
             string name = attribute.Name;
-            name.ShouldNotBeNull();
+            _ = name.ShouldNotBeNull();
         }
 
         [Fact]
@@ -139,7 +139,7 @@ public class CliCommandAttributeTests
         public void ThrowsArgumentException_WhenNameIsNullOrWhiteSpace(string? name)
         {
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new CliCommandAttribute(name!, "description"));
+            _ = Should.Throw<ArgumentException>(() => new CliCommandAttribute(name!, "description"));
         }
 
         [Theory]
@@ -151,7 +151,7 @@ public class CliCommandAttributeTests
         public void ThrowsArgumentException_WhenDescriptionIsNullOrWhiteSpace(string? description)
         {
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new CliCommandAttribute("test", description!));
+            _ = Should.Throw<ArgumentException>(() => new CliCommandAttribute("test", description!));
         }
     }
 
@@ -165,7 +165,7 @@ public class CliCommandAttributeTests
 
             // Act & Assert
             string name = attribute.Name;
-            name.ShouldNotBeNull();
+            _ = name.ShouldNotBeNull();
         }
 
         [Fact]
@@ -176,7 +176,7 @@ public class CliCommandAttributeTests
 
             // Act & Assert
             string description = attribute.Description;
-            description.ShouldNotBeNull();
+            _ = description.ShouldNotBeNull();
         }
     }
 
@@ -251,7 +251,7 @@ public class CliArgumentAttributeTests
         public void ThrowsArgumentException_WhenValueNameIsNullOrWhiteSpace(string? valueName)
         {
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new CliArgumentAttribute(0, valueName!));
+            _ = Should.Throw<ArgumentException>(() => new CliArgumentAttribute(0, valueName!));
         }
 
         [Theory]
@@ -263,7 +263,7 @@ public class CliArgumentAttributeTests
             string name = "test";
 
             // Act & Assert
-            Should.Throw<ArgumentOutOfRangeException>(() => new CliArgumentAttribute(position, name));
+            _ = Should.Throw<ArgumentOutOfRangeException>(() => new CliArgumentAttribute(position, name));
         }
     }
 
@@ -288,7 +288,7 @@ public class CliArgumentAttributeTests
 
             // Act & Assert
             string valueName = attribute.ValueName;
-            valueName.ShouldNotBeNull();
+            _ = valueName.ShouldNotBeNull();
         }
     }
 
@@ -358,7 +358,7 @@ public class CliOptionAttributeTests
         public void ThrowsArgumentException_WhenTemplateIsNullOrWhiteSpace(string? template)
         {
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new CliOptionAttribute(template!));
+            _ = Should.Throw<ArgumentException>(() => new CliOptionAttribute(template!));
         }
     }
 
@@ -372,7 +372,7 @@ public class CliOptionAttributeTests
 
             // Act & Assert
             string template = attribute.Template;
-            template.ShouldNotBeNull();
+            _ = template.ShouldNotBeNull();
         }
 
         [Fact]
@@ -511,7 +511,7 @@ public class CliExampleAttributeTests
             _ = attribute; // Suppress IDE0058
 
             // Assert
-            attribute.Arguments.ShouldHaveSingleItem();
+            _ = attribute.Arguments.ShouldHaveSingleItem();
             attribute.Arguments[0].ShouldBe(expectedArgument);
         }
 
@@ -535,7 +535,7 @@ public class CliExampleAttributeTests
         public void ThrowsArgumentException_WhenNoArgumentsProvided()
         {
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new CliExampleAttribute(Array.Empty<string>()));
+            _ = Should.Throw<ArgumentException>(() => new CliExampleAttribute(Array.Empty<string>()));
         }
     }
 
@@ -549,7 +549,7 @@ public class CliExampleAttributeTests
 
             // Act & Assert
             IReadOnlyList<string> arguments = attribute.Arguments;
-            arguments.ShouldNotBeNull();
+            _ = arguments.ShouldNotBeNull();
         }
     }
 
@@ -566,7 +566,7 @@ public class CliExampleAttributeTests
             _ = attribute; // Suppress IDE0058
 
             // Assert
-            attribute.Arguments.ShouldHaveSingleItem();
+            _ = attribute.Arguments.ShouldHaveSingleItem();
             attribute.Arguments[0].ShouldBe(command);
         }
 
@@ -581,7 +581,7 @@ public class CliExampleAttributeTests
             _ = attribute; // Suppress IDE0058
 
             // Assert
-            attribute.Arguments.ShouldHaveSingleItem();
+            _ = attribute.Arguments.ShouldHaveSingleItem();
             attribute.Arguments[0].ShouldBe(command);
         }
 

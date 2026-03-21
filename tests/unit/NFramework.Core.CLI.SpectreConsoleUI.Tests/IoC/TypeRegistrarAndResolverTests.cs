@@ -19,7 +19,7 @@ public class TypeRegistrarTests
             TypeRegistrar registrar = new TypeRegistrar(services);
 
             // Assert
-            registrar.ShouldNotBeNull();
+            _ = registrar.ShouldNotBeNull();
         }
 
         [Fact]
@@ -27,7 +27,7 @@ public class TypeRegistrarTests
         {
             // Act & Assert - The implementation uses primary constructor without null validation
             TypeRegistrar registrar = new TypeRegistrar(null!);
-            registrar.ShouldNotBeNull();
+            _ = registrar.ShouldNotBeNull();
         }
     }
 
@@ -44,8 +44,8 @@ public class TypeRegistrarTests
             Spectre.Console.Cli.ITypeResolver resolver = registrar.Build();
 
             // Assert
-            resolver.ShouldNotBeNull();
-            resolver.ShouldBeOfType<TypeResolver>();
+            _ = resolver.ShouldNotBeNull();
+            _ = resolver.ShouldBeOfType<TypeResolver>();
         }
 
         [Fact]
@@ -53,14 +53,14 @@ public class TypeRegistrarTests
         {
             // Arrange
             IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<object>(new object());
+            _ = services.AddSingleton<object>(new object());
             TypeRegistrar registrar = new TypeRegistrar(services);
 
             // Act
             TypeResolver resolver = (TypeResolver)registrar.Build();
 
             // Assert
-            resolver.ServiceProvider.ShouldNotBeNull();
+            _ = resolver.ServiceProvider.ShouldNotBeNull();
         }
     }
 
@@ -77,7 +77,7 @@ public class TypeRegistrarTests
             registrar.Register(typeof(IService), typeof(ServiceImplementation));
 
             // Assert
-            services.ShouldHaveSingleItem();
+            _ = services.ShouldHaveSingleItem();
         }
 
         [Fact]
@@ -132,7 +132,7 @@ public class TypeRegistrarTests
             registrar.RegisterInstance(typeof(object), instance);
 
             // Assert
-            services.ShouldHaveSingleItem();
+            _ = services.ShouldHaveSingleItem();
         }
 
         [Fact]
@@ -180,7 +180,7 @@ public class TypeRegistrarTests
             registrar.RegisterLazy(typeof(object), factory);
 
             // Assert
-            services.ShouldHaveSingleItem();
+            _ = services.ShouldHaveSingleItem();
         }
 
         [Fact]
@@ -261,8 +261,8 @@ public class TypeRegistrarTests
             IService? resolved = resolver.Resolve(typeof(IService)) as IService;
 
             // Assert
-            resolved.ShouldNotBeNull();
-            resolved.ShouldBeOfType<ServiceImplementation>();
+            _ = resolved.ShouldNotBeNull();
+            _ = resolved.ShouldBeOfType<ServiceImplementation>();
         }
     }
 
@@ -290,7 +290,7 @@ public class TypeResolverTests
             TypeResolver resolver = new TypeResolver(serviceProvider);
 
             // Assert
-            resolver.ShouldNotBeNull();
+            _ = resolver.ShouldNotBeNull();
             serviceProvider.ShouldBe(resolver.ServiceProvider);
         }
 
@@ -299,7 +299,7 @@ public class TypeResolverTests
         {
             // Act & Assert - The implementation uses primary constructor without null validation
             TypeResolver resolver = new TypeResolver(null!);
-            resolver.ShouldNotBeNull();
+            _ = resolver.ShouldNotBeNull();
         }
     }
 
@@ -327,7 +327,7 @@ public class TypeResolverTests
 
             // Act & Assert
             IServiceProvider provider = resolver.ServiceProvider;
-            provider.ShouldNotBeNull();
+            _ = provider.ShouldNotBeNull();
         }
     }
 
@@ -352,7 +352,7 @@ public class TypeResolverTests
         {
             // Arrange
             IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<object>(new object());
+            _ = services.AddSingleton<object>(new object());
             IServiceProvider serviceProvider = services.BuildServiceProvider();
             TypeResolver resolver = new TypeResolver(serviceProvider);
 
@@ -360,7 +360,7 @@ public class TypeResolverTests
             object? result = resolver.Resolve(typeof(object));
 
             // Assert
-            result.ShouldNotBeNull();
+            _ = result.ShouldNotBeNull();
         }
 
         [Fact]
@@ -383,7 +383,7 @@ public class TypeResolverTests
             // Arrange
             IServiceCollection services = new ServiceCollection();
             object instance = new object();
-            services.AddSingleton(typeof(object), instance);
+            _ = services.AddSingleton(typeof(object), instance);
             IServiceProvider serviceProvider = services.BuildServiceProvider();
             TypeResolver resolver = new TypeResolver(serviceProvider);
 
@@ -401,7 +401,7 @@ public class TypeResolverTests
         {
             // Arrange
             IServiceCollection services = new ServiceCollection();
-            services.AddTransient<object>();
+            _ = services.AddTransient<object>();
             IServiceProvider serviceProvider = services.BuildServiceProvider();
             TypeResolver resolver = new TypeResolver(serviceProvider);
 
@@ -410,8 +410,8 @@ public class TypeResolverTests
             object? result2 = resolver.Resolve(typeof(object));
 
             // Assert
-            result1.ShouldNotBeNull();
-            result2.ShouldNotBeNull();
+            _ = result1.ShouldNotBeNull();
+            _ = result2.ShouldNotBeNull();
             result1.ShouldNotBe(result2);
         }
     }
@@ -423,7 +423,7 @@ public class TypeResolverTests
         {
             // Arrange
             IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<object>();
+            _ = services.AddSingleton<object>();
             IServiceProvider serviceProvider = services.BuildServiceProvider();
             TypeResolver resolver = new TypeResolver(serviceProvider);
 
@@ -450,7 +450,7 @@ public class TypeResolverTests
         {
             // Arrange
             IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<object>();
+            _ = services.AddSingleton<object>();
             IServiceProvider serviceProvider = services.BuildServiceProvider();
             TypeResolver resolver = new TypeResolver(serviceProvider);
 
@@ -467,7 +467,7 @@ public class TypeResolverTests
         {
             // Arrange
             IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<ITestService, TestService>();
+            _ = services.AddSingleton<ITestService, TestService>();
             IServiceProvider serviceProvider = services.BuildServiceProvider();
             TypeResolver resolver = new TypeResolver(serviceProvider);
 
@@ -475,8 +475,8 @@ public class TypeResolverTests
             ITestService? result = resolver.Resolve(typeof(ITestService)) as ITestService;
 
             // Assert
-            result.ShouldNotBeNull();
-            result.ShouldBeOfType<TestService>();
+            _ = result.ShouldNotBeNull();
+            _ = result.ShouldBeOfType<TestService>();
         }
 
         [Fact]
@@ -484,8 +484,8 @@ public class TypeResolverTests
         {
             // Arrange
             IServiceCollection services = new ServiceCollection();
-            services.AddSingleton<ITestService, TestService>();
-            services.AddSingleton<ITestService2, TestService2>();
+            _ = services.AddSingleton<ITestService, TestService>();
+            _ = services.AddSingleton<ITestService2, TestService2>();
             IServiceProvider serviceProvider = services.BuildServiceProvider();
             TypeResolver resolver = new TypeResolver(serviceProvider);
 
@@ -494,8 +494,8 @@ public class TypeResolverTests
             ITestService2? result2 = resolver.Resolve(typeof(ITestService2)) as ITestService2;
 
             // Assert
-            result1.ShouldNotBeNull();
-            result2.ShouldNotBeNull();
+            _ = result1.ShouldNotBeNull();
+            _ = result2.ShouldNotBeNull();
         }
     }
 

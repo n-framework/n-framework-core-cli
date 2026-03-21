@@ -35,7 +35,7 @@ public class TerminalTextPromptTests
             string validationMessage = "Error message";
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTextPrompt(promptText!, validationMessage));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTextPrompt(promptText!, validationMessage));
         }
 
         [Theory]
@@ -50,7 +50,7 @@ public class TerminalTextPromptTests
             string promptText = "Enter value:";
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTextPrompt(promptText, validationMessage!));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTextPrompt(promptText, validationMessage!));
         }
     }
 
@@ -64,7 +64,7 @@ public class TerminalTextPromptTests
 
             // Act & Assert
             string text = prompt.PromptText;
-            text.ShouldNotBeNull();
+            _ = text.ShouldNotBeNull();
         }
 
         [Fact]
@@ -75,7 +75,7 @@ public class TerminalTextPromptTests
 
             // Act & Assert
             string message = prompt.ValidationErrorMessage;
-            message.ShouldNotBeNull();
+            _ = message.ShouldNotBeNull();
         }
     }
 
@@ -173,7 +173,7 @@ public class TerminalSelectionOptionTests
             string label = "Option Label";
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalSelectionOption(value!, label));
+            _ = Should.Throw<ArgumentException>(() => new TerminalSelectionOption(value!, label));
         }
 
         [Theory]
@@ -188,7 +188,7 @@ public class TerminalSelectionOptionTests
             string value = "option1";
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalSelectionOption(value, label!));
+            _ = Should.Throw<ArgumentException>(() => new TerminalSelectionOption(value, label!));
         }
     }
 
@@ -263,7 +263,7 @@ public class TerminalSelectionOptionTests
 
             // Act & Assert
             string value = option.Value;
-            value.ShouldNotBeNull();
+            _ = value.ShouldNotBeNull();
         }
 
         [Fact]
@@ -274,7 +274,7 @@ public class TerminalSelectionOptionTests
 
             // Act & Assert
             string label = option.Label;
-            label.ShouldNotBeNull();
+            _ = label.ShouldNotBeNull();
         }
     }
 
@@ -388,7 +388,7 @@ public class TerminalSelectionPromptTests
             IReadOnlyList<TerminalSelectionOption> options = new[] { new TerminalSelectionOption("1", "Option 1") };
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalSelectionPrompt(title!, options));
+            _ = Should.Throw<ArgumentException>(() => new TerminalSelectionPrompt(title!, options));
         }
 
         [Fact]
@@ -398,7 +398,7 @@ public class TerminalSelectionPromptTests
             string title = "Choose an option:";
 
             // Act & Assert
-            Should.Throw<ArgumentNullException>(() => new TerminalSelectionPrompt(title, null!));
+            _ = Should.Throw<ArgumentNullException>(() => new TerminalSelectionPrompt(title, null!));
         }
 
         [Fact]
@@ -409,7 +409,7 @@ public class TerminalSelectionPromptTests
             IReadOnlyList<TerminalSelectionOption> options = Array.Empty<TerminalSelectionOption>();
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalSelectionPrompt(title, options));
+            _ = Should.Throw<ArgumentException>(() => new TerminalSelectionPrompt(title, options));
         }
     }
 
@@ -424,7 +424,7 @@ public class TerminalSelectionPromptTests
 
             // Act & Assert
             string title = prompt.Title;
-            title.ShouldNotBeNull();
+            _ = title.ShouldNotBeNull();
         }
 
         [Fact]
@@ -437,8 +437,8 @@ public class TerminalSelectionPromptTests
             // Act & Assert
             IReadOnlyList<TerminalSelectionOption> opts = prompt.Options;
             _ = opts; // Suppress IDE0058
-            opts.ShouldNotBeNull();
-            opts.ShouldHaveSingleItem();
+            _ = opts.ShouldNotBeNull();
+            _ = opts.ShouldHaveSingleItem();
         }
     }
 
@@ -456,7 +456,7 @@ public class TerminalSelectionPromptTests
             _ = prompt; // Suppress IDE0058
 
             // Assert
-            prompt.Options.ShouldHaveSingleItem();
+            _ = prompt.Options.ShouldHaveSingleItem();
             prompt.Options[0].Value.ShouldBe("yes");
         }
 

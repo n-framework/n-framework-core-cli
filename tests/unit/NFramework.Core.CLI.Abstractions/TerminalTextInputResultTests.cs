@@ -26,7 +26,7 @@ public class TerminalTextInputResultTests
         public void ThrowsArgumentException_WhenValueIsNullOrWhiteSpace(string? value)
         {
             // Act & Assert
-            Should.Throw<ArgumentException>(() => TerminalTextInputResult.Submitted(value!));
+            _ = Should.Throw<ArgumentException>(() => TerminalTextInputResult.Submitted(value!));
         }
 
         [Fact]

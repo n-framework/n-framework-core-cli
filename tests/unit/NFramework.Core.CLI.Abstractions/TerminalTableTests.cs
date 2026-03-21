@@ -52,7 +52,7 @@ public class TerminalTableTests
             IReadOnlyList<TerminalTableRow> rows = Array.Empty<TerminalTableRow>();
 
             // Act & Assert
-            Should.Throw<ArgumentNullException>(() => new TerminalTable(null!, rows));
+            _ = Should.Throw<ArgumentNullException>(() => new TerminalTable(null!, rows));
         }
 
         [Fact]
@@ -62,7 +62,7 @@ public class TerminalTableTests
             IReadOnlyList<string> columns = new[] { "Name" };
 
             // Act & Assert
-            Should.Throw<ArgumentNullException>(() => new TerminalTable(columns, null!));
+            _ = Should.Throw<ArgumentNullException>(() => new TerminalTable(columns, null!));
         }
 
         [Fact]
@@ -73,7 +73,7 @@ public class TerminalTableTests
             IReadOnlyList<TerminalTableRow> rows = Array.Empty<TerminalTableRow>();
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
         }
 
         [Fact]
@@ -84,7 +84,7 @@ public class TerminalTableTests
             IReadOnlyList<TerminalTableRow> rows = Array.Empty<TerminalTableRow>();
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
         }
 
         [Fact]
@@ -95,7 +95,7 @@ public class TerminalTableTests
             IReadOnlyList<TerminalTableRow> rows = Array.Empty<TerminalTableRow>();
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
         }
 
         [Fact]
@@ -106,7 +106,7 @@ public class TerminalTableTests
             IReadOnlyList<TerminalTableRow> rows = Array.Empty<TerminalTableRow>();
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
         }
 
         [Fact]
@@ -121,7 +121,7 @@ public class TerminalTableTests
             };
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTable(columns, rows));
         }
     }
 
@@ -138,8 +138,8 @@ public class TerminalTableTests
             // Act & Assert
             IReadOnlyList<string> cols = table.Columns;
             _ = cols; // Suppress IDE0058
-            cols.ShouldNotBeNull();
-            cols.ShouldHaveSingleItem();
+            _ = cols.ShouldNotBeNull();
+            _ = cols.ShouldHaveSingleItem();
         }
 
         [Fact]
@@ -153,8 +153,8 @@ public class TerminalTableTests
             // Act & Assert
             IReadOnlyList<TerminalTableRow> rowList = table.Rows;
             _ = rowList;
-            rowList.ShouldNotBeNull();
-            rowList.ShouldHaveSingleItem();
+            _ = rowList.ShouldNotBeNull();
+            _ = rowList.ShouldHaveSingleItem();
         }
     }
 
@@ -176,7 +176,7 @@ public class TerminalTableTests
             _ = table; // Suppress IDE0058
 
             // Assert
-            table.Columns.ShouldHaveSingleItem();
+            _ = table.Columns.ShouldHaveSingleItem();
             table.Rows.Count.ShouldBe(2);
         }
 
@@ -259,7 +259,7 @@ public class TerminalTableRowTests
             TerminalTableRow row = new TerminalTableRow(cells);
 
             // Assert
-            row.Cells.ShouldHaveSingleItem();
+            _ = row.Cells.ShouldHaveSingleItem();
             row.Cells[0].ShouldBe("Value");
         }
 
@@ -267,7 +267,7 @@ public class TerminalTableRowTests
         public void ThrowsArgumentNullException_WhenCellsIsNull()
         {
             // Act & Assert
-            Should.Throw<ArgumentNullException>(() => new TerminalTableRow(null!));
+            _ = Should.Throw<ArgumentNullException>(() => new TerminalTableRow(null!));
         }
 
         [Fact]
@@ -277,7 +277,7 @@ public class TerminalTableRowTests
             IReadOnlyList<string> cells = Array.Empty<string>();
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTableRow(cells));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTableRow(cells));
         }
 
         [Fact]
@@ -287,7 +287,7 @@ public class TerminalTableRowTests
             IReadOnlyList<string> cells = new[] { "Value1", null!, "Value3" };
 
             // Act & Assert
-            Should.Throw<ArgumentException>(() => new TerminalTableRow(cells));
+            _ = Should.Throw<ArgumentException>(() => new TerminalTableRow(cells));
         }
     }
 
@@ -303,8 +303,8 @@ public class TerminalTableRowTests
             // Act & Assert
             IReadOnlyList<string> rowCells = row.Cells;
             _ = rowCells; // Suppress IDE0058
-            rowCells.ShouldNotBeNull();
-            rowCells.ShouldHaveSingleItem();
+            _ = rowCells.ShouldNotBeNull();
+            _ = rowCells.ShouldHaveSingleItem();
         }
     }
 

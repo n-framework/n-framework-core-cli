@@ -17,7 +17,7 @@ public class SpectreSelectionPromptRunnerTests
             SpectreSelectionPromptRunner runner = new();
 
             // Assert
-            runner.ShouldNotBeNull();
+            _ = runner.ShouldNotBeNull();
         }
     }
 
@@ -28,8 +28,8 @@ public class SpectreSelectionPromptRunnerTests
         {
             // Arrange
             SpectreSelectionPromptRunner runner = new();
-            var options = new[] { new TerminalSelectionOption("1", "Option 1") };
-            var prompt = new TerminalSelectionPrompt("Choose:", options);
+            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act & Assert
             _ = Should.Throw<ArgumentNullException>(() => runner.Prompt(null!, prompt));
@@ -40,7 +40,7 @@ public class SpectreSelectionPromptRunnerTests
         {
             // Arrange
             SpectreSelectionPromptRunner runner = new();
-            var console = new TestConsole();
+            TestConsole console = new TestConsole();
 
             // Act & Assert
             _ = Should.Throw<ArgumentNullException>(() => runner.Prompt(console, null!));

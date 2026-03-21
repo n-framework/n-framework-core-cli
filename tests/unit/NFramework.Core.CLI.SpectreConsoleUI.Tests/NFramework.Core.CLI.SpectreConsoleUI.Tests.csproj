@@ -5,7 +5,6 @@
     <IsTestProject>true</IsTestProject>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <NoWarn>IDE0058;IDE0008;xUnit2013</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

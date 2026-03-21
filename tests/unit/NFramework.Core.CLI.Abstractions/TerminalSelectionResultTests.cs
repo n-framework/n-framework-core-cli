@@ -26,7 +26,7 @@ public class TerminalSelectionResultTests
         public void ThrowsArgumentException_WhenValueIsNullOrWhiteSpace(string? value)
         {
             // Act & Assert
-            Should.Throw<ArgumentException>(() => TerminalSelectionResult.Selected(value!));
+            _ = Should.Throw<ArgumentException>(() => TerminalSelectionResult.Selected(value!));
         }
 
         [Fact]

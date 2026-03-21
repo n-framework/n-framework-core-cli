@@ -21,7 +21,7 @@ public class SpectreConsoleTerminalSessionTests
             SpectreConsoleTerminalSession session = new(console);
 
             // Assert
-            session.ShouldNotBeNull();
+            _ = session.ShouldNotBeNull();
         }
 
         [Fact]
@@ -58,7 +58,7 @@ public class SpectreConsoleTerminalSessionTests
         public void WritesMessage_ToConsole()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
             string testMessage = "Test message";
@@ -75,7 +75,7 @@ public class SpectreConsoleTerminalSessionTests
         public void HandlesEmptyMessage()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
 
@@ -87,7 +87,7 @@ public class SpectreConsoleTerminalSessionTests
         public void HandlesMultiLineMessage()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
             string testMessage = "Line 1\nLine 2\nLine 3";
@@ -109,8 +109,8 @@ public class SpectreConsoleTerminalSessionTests
         public void WritesErrorMessage_ToErrorWriter()
         {
             // Arrange
-            var errorWriter = new System.IO.StringWriter();
-            var testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            TestConsole testConsole = new TestConsole();
             SpectreConsoleTerminalSession session = new(
                 testConsole,
                 errorWriter,
@@ -131,8 +131,8 @@ public class SpectreConsoleTerminalSessionTests
         public void HandlesEmptyErrorMessage()
         {
             // Arrange
-            var errorWriter = new System.IO.StringWriter();
-            var testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            TestConsole testConsole = new TestConsole();
             SpectreConsoleTerminalSession session = new(
                 testConsole,
                 errorWriter,
@@ -151,11 +151,11 @@ public class SpectreConsoleTerminalSessionTests
         public void RendersSimpleTable()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
 
-            var table = new TerminalTable(
+            TerminalTable table = new TerminalTable(
                 ["Name", "Value"],
                 [new TerminalTableRow(["Item1", "Value1"]), new TerminalTableRow(["Item2", "Value2"])]
             );
@@ -177,7 +177,7 @@ public class SpectreConsoleTerminalSessionTests
         public void ThrowsArgumentNullException_WhenTableIsNull()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
 
@@ -189,11 +189,11 @@ public class SpectreConsoleTerminalSessionTests
         public void RendersEmptyTable()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
 
-            var table = new TerminalTable(["Col1", "Col2"], []);
+            TerminalTable table = new TerminalTable(["Col1", "Col2"], []);
 
             // Act
             session.RenderTable(table);
@@ -208,17 +208,17 @@ public class SpectreConsoleTerminalSessionTests
         public void RendersTableWithMultipleRows()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
 
-            var rows = new List<TerminalTableRow>();
+            List<TerminalTableRow> rows = new List<TerminalTableRow>();
             for (int i = 0; i < 10; i++)
             {
                 rows.Add(new TerminalTableRow([$"Row{i}-Col1", $"Row{i}-Col2", $"Row{i}-Col3"]));
             }
 
-            var table = new TerminalTable(["Column1", "Column2", "Column3"], rows);
+            TerminalTable table = new TerminalTable(["Column1", "Column2", "Column3"], rows);
 
             // Act
             session.RenderTable(table);
@@ -234,11 +234,14 @@ public class SpectreConsoleTerminalSessionTests
         public void RendersTableWithSpecialCharacters()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
 
-            var table = new TerminalTable(["Test"], [new TerminalTableRow(["Value with special chars: <>&\"'"])]);
+            TerminalTable table = new TerminalTable(
+                ["Test"],
+                [new TerminalTableRow(["Value with special chars: <>&\"'"])]
+            );
 
             // Act
             session.RenderTable(table);
@@ -255,13 +258,13 @@ public class SpectreConsoleTerminalSessionTests
         public async Task ThrowsOperationCanceledException_WhenTokenIsCancelled()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
-            var cts = new CancellationTokenSource();
+            CancellationTokenSource cts = new CancellationTokenSource();
             cts.Cancel();
 
-            var prompt = new TerminalTextPrompt("Enter value:", "Invalid value");
+            TerminalTextPrompt prompt = new TerminalTextPrompt("Enter value:", "Invalid value");
 
             // Act & Assert
             _ = await Should.ThrowAsync<OperationCanceledException>(() =>
@@ -276,14 +279,14 @@ public class SpectreConsoleTerminalSessionTests
         public async Task ThrowsOperationCanceledException_WhenTokenIsCancelled()
         {
             // Arrange
-            var testConsole = new TestConsole();
+            TestConsole testConsole = new TestConsole();
             IAnsiConsole console = testConsole;
             SpectreConsoleTerminalSession session = new(console);
-            var cts = new CancellationTokenSource();
+            CancellationTokenSource cts = new CancellationTokenSource();
             cts.Cancel();
 
-            var options = new[] { new TerminalSelectionOption("1", "Option 1") };
-            var prompt = new TerminalSelectionPrompt("Choose:", options);
+            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act & Assert
             _ = await Should.ThrowAsync<OperationCanceledException>(() =>
@@ -298,25 +301,25 @@ public class SpectreConsoleTerminalSessionTests
         public void CreatesSession_WithAllValidParameters()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var textRunner = new MockTextPromptRunner();
-            var selectionRunner = new MockSelectionPromptRunner();
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockTextPromptRunner textRunner = new MockTextPromptRunner();
+            MockSelectionPromptRunner selectionRunner = new MockSelectionPromptRunner();
 
             // Act
             SpectreConsoleTerminalSession session = new(testConsole, errorWriter, textRunner, selectionRunner);
 
             // Assert
-            session.ShouldNotBeNull();
+            _ = session.ShouldNotBeNull();
         }
 
         [Fact]
         public void ThrowsArgumentNullException_WhenConsoleIsNull()
         {
             // Arrange
-            var errorWriter = new System.IO.StringWriter();
-            var textRunner = new MockTextPromptRunner();
-            var selectionRunner = new MockSelectionPromptRunner();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockTextPromptRunner textRunner = new MockTextPromptRunner();
+            MockSelectionPromptRunner selectionRunner = new MockSelectionPromptRunner();
 
             // Act & Assert
             _ = Should.Throw<ArgumentNullException>(() =>
@@ -328,9 +331,9 @@ public class SpectreConsoleTerminalSessionTests
         public void ThrowsArgumentNullException_WhenErrorWriterIsNull()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var textRunner = new MockTextPromptRunner();
-            var selectionRunner = new MockSelectionPromptRunner();
+            TestConsole testConsole = new TestConsole();
+            MockTextPromptRunner textRunner = new MockTextPromptRunner();
+            MockSelectionPromptRunner selectionRunner = new MockSelectionPromptRunner();
 
             // Act & Assert
             _ = Should.Throw<ArgumentNullException>(() =>
@@ -342,9 +345,9 @@ public class SpectreConsoleTerminalSessionTests
         public void ThrowsArgumentNullException_WhenTextPromptRunnerIsNull()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var selectionRunner = new MockSelectionPromptRunner();
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockSelectionPromptRunner selectionRunner = new MockSelectionPromptRunner();
 
             // Act & Assert
             _ = Should.Throw<ArgumentNullException>(() =>
@@ -356,9 +359,9 @@ public class SpectreConsoleTerminalSessionTests
         public void ThrowsArgumentNullException_WhenSelectionPromptRunnerIsNull()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var textRunner = new MockTextPromptRunner();
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockTextPromptRunner textRunner = new MockTextPromptRunner();
 
             // Act & Assert
             _ = Should.Throw<ArgumentNullException>(() =>
@@ -373,9 +376,9 @@ public class SpectreConsoleTerminalSessionTests
         public async Task ReturnsSubmittedResult_WhenRunnerReturnsSuccess()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var mockRunner = new MockTextPromptRunner
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockTextPromptRunner mockRunner = new MockTextPromptRunner
             {
                 ResultToReturn = TerminalTextInputResult.Submitted("test input"),
             };
@@ -385,7 +388,7 @@ public class SpectreConsoleTerminalSessionTests
                 mockRunner,
                 new MockSelectionPromptRunner()
             );
-            var prompt = new TerminalTextPrompt("Enter value:", "Invalid");
+            TerminalTextPrompt prompt = new TerminalTextPrompt("Enter value:", "Invalid");
 
             // Act
             TerminalTextInputResult result = await session.PromptForTextAsync(prompt, CancellationToken.None);
@@ -399,16 +402,19 @@ public class SpectreConsoleTerminalSessionTests
         public async Task ReturnsCancelledResult_WhenRunnerReturnsCancelled()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var mockRunner = new MockTextPromptRunner { ResultToReturn = TerminalTextInputResult.Cancelled() };
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockTextPromptRunner mockRunner = new MockTextPromptRunner
+            {
+                ResultToReturn = TerminalTextInputResult.Cancelled(),
+            };
             SpectreConsoleTerminalSession session = new(
                 testConsole,
                 errorWriter,
                 mockRunner,
                 new MockSelectionPromptRunner()
             );
-            var prompt = new TerminalTextPrompt("Enter value:", "Invalid");
+            TerminalTextPrompt prompt = new TerminalTextPrompt("Enter value:", "Invalid");
 
             // Act
             TerminalTextInputResult result = await session.PromptForTextAsync(prompt, CancellationToken.None);
@@ -422,22 +428,22 @@ public class SpectreConsoleTerminalSessionTests
         public async Task PassesConsoleToRunner()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var mockRunner = new MockTextPromptRunner();
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockTextPromptRunner mockRunner = new MockTextPromptRunner();
             SpectreConsoleTerminalSession session = new(
                 testConsole,
                 errorWriter,
                 mockRunner,
                 new MockSelectionPromptRunner()
             );
-            var prompt = new TerminalTextPrompt("Enter value:", "Invalid");
+            TerminalTextPrompt prompt = new TerminalTextPrompt("Enter value:", "Invalid");
 
             // Act
             _ = await session.PromptForTextAsync(prompt, CancellationToken.None);
 
             // Assert
-            mockRunner.ConsoleReceived.ShouldNotBeNull();
+            _ = mockRunner.ConsoleReceived.ShouldNotBeNull();
             mockRunner.ConsoleReceived.ShouldBe(testConsole);
         }
 
@@ -445,22 +451,22 @@ public class SpectreConsoleTerminalSessionTests
         public async Task PassesPromptToRunner()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var mockRunner = new MockTextPromptRunner();
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockTextPromptRunner mockRunner = new MockTextPromptRunner();
             SpectreConsoleTerminalSession session = new(
                 testConsole,
                 errorWriter,
                 mockRunner,
                 new MockSelectionPromptRunner()
             );
-            var prompt = new TerminalTextPrompt("Test prompt:", "Invalid");
+            TerminalTextPrompt prompt = new TerminalTextPrompt("Test prompt:", "Invalid");
 
             // Act
             _ = await session.PromptForTextAsync(prompt, CancellationToken.None);
 
             // Assert
-            mockRunner.PromptReceived.ShouldNotBeNull();
+            _ = mockRunner.PromptReceived.ShouldNotBeNull();
             mockRunner.PromptReceived.ShouldBe(prompt);
         }
     }
@@ -471,9 +477,9 @@ public class SpectreConsoleTerminalSessionTests
         public async Task ReturnsSelectedResult_WhenRunnerReturnsSuccess()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var mockRunner = new MockSelectionPromptRunner
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockSelectionPromptRunner mockRunner = new MockSelectionPromptRunner
             {
                 ResultToReturn = TerminalSelectionResult.Selected("option1"),
             };
@@ -483,8 +489,8 @@ public class SpectreConsoleTerminalSessionTests
                 new MockTextPromptRunner(),
                 mockRunner
             );
-            var options = new[] { new TerminalSelectionOption("1", "Option 1") };
-            var prompt = new TerminalSelectionPrompt("Choose:", options);
+            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act
             TerminalSelectionResult result = await session.PromptForSelectionAsync(prompt, CancellationToken.None);
@@ -498,17 +504,20 @@ public class SpectreConsoleTerminalSessionTests
         public async Task ReturnsCancelledResult_WhenRunnerReturnsCancelled()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var mockRunner = new MockSelectionPromptRunner { ResultToReturn = TerminalSelectionResult.Cancelled() };
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockSelectionPromptRunner mockRunner = new MockSelectionPromptRunner
+            {
+                ResultToReturn = TerminalSelectionResult.Cancelled(),
+            };
             SpectreConsoleTerminalSession session = new(
                 testConsole,
                 errorWriter,
                 new MockTextPromptRunner(),
                 mockRunner
             );
-            var options = new[] { new TerminalSelectionOption("1", "Option 1") };
-            var prompt = new TerminalSelectionPrompt("Choose:", options);
+            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act
             TerminalSelectionResult result = await session.PromptForSelectionAsync(prompt, CancellationToken.None);
@@ -522,23 +531,23 @@ public class SpectreConsoleTerminalSessionTests
         public async Task PassesConsoleToRunner()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var mockRunner = new MockSelectionPromptRunner();
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockSelectionPromptRunner mockRunner = new MockSelectionPromptRunner();
             SpectreConsoleTerminalSession session = new(
                 testConsole,
                 errorWriter,
                 new MockTextPromptRunner(),
                 mockRunner
             );
-            var options = new[] { new TerminalSelectionOption("1", "Option 1") };
-            var prompt = new TerminalSelectionPrompt("Choose:", options);
+            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act
             _ = await session.PromptForSelectionAsync(prompt, CancellationToken.None);
 
             // Assert
-            mockRunner.ConsoleReceived.ShouldNotBeNull();
+            _ = mockRunner.ConsoleReceived.ShouldNotBeNull();
             mockRunner.ConsoleReceived.ShouldBe(testConsole);
         }
 
@@ -546,23 +555,23 @@ public class SpectreConsoleTerminalSessionTests
         public async Task PassesPromptToRunner()
         {
             // Arrange
-            var testConsole = new TestConsole();
-            var errorWriter = new System.IO.StringWriter();
-            var mockRunner = new MockSelectionPromptRunner();
+            TestConsole testConsole = new TestConsole();
+            StringWriter errorWriter = new System.IO.StringWriter();
+            MockSelectionPromptRunner mockRunner = new MockSelectionPromptRunner();
             SpectreConsoleTerminalSession session = new(
                 testConsole,
                 errorWriter,
                 new MockTextPromptRunner(),
                 mockRunner
             );
-            var options = new[] { new TerminalSelectionOption("1", "Option 1") };
-            var prompt = new TerminalSelectionPrompt("Choose:", options);
+            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act
             _ = await session.PromptForSelectionAsync(prompt, CancellationToken.None);
 
             // Assert
-            mockRunner.PromptReceived.ShouldNotBeNull();
+            _ = mockRunner.PromptReceived.ShouldNotBeNull();
             mockRunner.PromptReceived.ShouldBe(prompt);
         }
     }
