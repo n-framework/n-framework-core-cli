@@ -1,0 +1,27 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/NFramework.Core.CLI.Abstractions/">
+    <Project Path="src/NFramework.Core.CLI.Abstractions/NFramework.Core.CLI.Abstractions.csproj" />
+  </Folder>
+  <Folder Name="/src/NFramework.Core.CLI.SpectreConsoleUI.Generators/">
+    <Project Path="src/NFramework.Core.CLI.SpectreConsoleUI.Generators/NFramework.Core.CLI.SpectreConsoleUI.Generators.csproj" />
+  </Folder>
+  <Folder Name="/src/NFramework.Core.CLI.SpectreConsoleUI/">
+    <Project Path="src/NFramework.Core.CLI.SpectreConsoleUI/NFramework.Core.CLI.SpectreConsoleUI.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/integration/" />
+  <Folder Name="/tests/integration/NFramework.Core.CLI.Abstractions.Tests/">
+    <Project Path="tests/integration/NFramework.Core.CLI.Abstractions.Tests/NFramework.Core.CLI.Abstractions.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/integration/NFramework.Core.CLI.SpectreConsoleUI.Generators.Tests/">
+    <Project Path="tests/integration/NFramework.Core.CLI.SpectreConsoleUI.Generators.Tests/NFramework.Core.CLI.SpectreConsoleUI.Generators.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/unit/" />
+  <Folder Name="/tests/unit/NFramework.Core.CLI.Abstractions/">
+    <Project Path="tests/unit/NFramework.Core.CLI.Abstractions/NFramework.Core.CLI.Abstractions.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/unit/NFramework.Core.CLI.SpectreConsoleUI.Tests/">
+    <Project Path="tests/unit/NFramework.Core.CLI.SpectreConsoleUI.Tests/NFramework.Core.CLI.SpectreConsoleUI.Tests.csproj" />
+  </Folder>
+</Solution>
