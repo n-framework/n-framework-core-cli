@@ -42,20 +42,24 @@ public sealed partial class CliSpectreApplicationGenerator
         if (string.IsNullOrWhiteSpace(commandName) || string.IsNullOrWhiteSpace(commandDescription))
             return null;
 
-        ImmutableArray<ExampleModel> examples = commandType
-            .GetAttributes()
-            .Where(static attribute => attribute.AttributeClass?.ToDisplayString() == CliExampleAttributeName)
-            .SelectMany(createExamples)
-            .ToImmutableArray();
+        ImmutableArray<ExampleModel> examples =
+        [
+            .. commandType
+                .GetAttributes()
+                .Where(static attribute => attribute.AttributeClass?.ToDisplayString() == CliExampleAttributeName)
+                .SelectMany(createExamples),
+        ];
 
-        ImmutableArray<PropertyModel> properties = settingsType
-            .GetMembers()
-            .OfType<IPropertySymbol>()
-            .Where(static property => !property.IsStatic)
-            .Select(createPropertyModel)
-            .Where(static property => property is not null)
-            .Select(static property => property!)
-            .ToImmutableArray();
+        ImmutableArray<PropertyModel> properties =
+        [
+            .. settingsType
+                .GetMembers()
+                .OfType<IPropertySymbol>()
+                .Where(static property => !property.IsStatic)
+                .Select(createPropertyModel)
+                .Where(static property => property is not null)
+                .Select(static property => property!),
+        ];
 
         if (!hasPublicParameterlessConstructor(settingsType))
             return null;
@@ -81,9 +85,10 @@ public sealed partial class CliSpectreApplicationGenerator
         if (argument.Kind != TypedConstantKind.Array)
             yield break;
 
-        ImmutableArray<string> values = argument
-            .Values.Select(static value => value.Value as string ?? string.Empty)
-            .ToImmutableArray();
+        ImmutableArray<string> values =
+        [
+            .. argument.Values.Select(static value => value.Value as string ?? string.Empty),
+        ];
         if (values.Length > 0)
             yield return new ExampleModel(values);
     }

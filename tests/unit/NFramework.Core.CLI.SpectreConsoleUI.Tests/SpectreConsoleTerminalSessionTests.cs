@@ -285,7 +285,7 @@ public class SpectreConsoleTerminalSessionTests
             CancellationTokenSource cts = new CancellationTokenSource();
             cts.Cancel();
 
-            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionOption[] options = [new TerminalSelectionOption("1", "Option 1")];
             TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act & Assert
@@ -489,7 +489,7 @@ public class SpectreConsoleTerminalSessionTests
                 new MockTextPromptRunner(),
                 mockRunner
             );
-            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionOption[] options = [new TerminalSelectionOption("1", "Option 1")];
             TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act
@@ -516,7 +516,7 @@ public class SpectreConsoleTerminalSessionTests
                 new MockTextPromptRunner(),
                 mockRunner
             );
-            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionOption[] options = [new TerminalSelectionOption("1", "Option 1")];
             TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act
@@ -540,7 +540,7 @@ public class SpectreConsoleTerminalSessionTests
                 new MockTextPromptRunner(),
                 mockRunner
             );
-            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionOption[] options = [new TerminalSelectionOption("1", "Option 1")];
             TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act
@@ -564,7 +564,7 @@ public class SpectreConsoleTerminalSessionTests
                 new MockTextPromptRunner(),
                 mockRunner
             );
-            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionOption[] options = [new TerminalSelectionOption("1", "Option 1")];
             TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act

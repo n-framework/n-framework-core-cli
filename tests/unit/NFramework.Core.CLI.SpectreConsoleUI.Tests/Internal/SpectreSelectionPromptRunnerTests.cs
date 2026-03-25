@@ -28,7 +28,7 @@ public class SpectreSelectionPromptRunnerTests
         {
             // Arrange
             SpectreSelectionPromptRunner runner = new();
-            TerminalSelectionOption[] options = new[] { new TerminalSelectionOption("1", "Option 1") };
+            TerminalSelectionOption[] options = [new TerminalSelectionOption("1", "Option 1")];
             TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose:", options);
 
             // Act & Assert

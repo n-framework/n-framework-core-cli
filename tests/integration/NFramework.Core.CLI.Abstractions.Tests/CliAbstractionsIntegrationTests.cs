@@ -154,11 +154,11 @@ public class CliAbstractionsIntegrationTests
     public void TerminalSelectionPrompt_WithValidOptions_ConstructsCorrectly()
     {
         // Arrange
-        TerminalSelectionOption[] options = new[]
-        {
+        TerminalSelectionOption[] options =
+        [
             new TerminalSelectionOption("1", "Option 1"),
             new TerminalSelectionOption("2", "Option 2"),
-        };
+        ];
         TerminalSelectionPrompt prompt = new TerminalSelectionPrompt("Choose an option:", options);
 
         // Act & Assert
@@ -174,7 +174,7 @@ public class CliAbstractionsIntegrationTests
     public void TerminalSelectionPrompt_WithEmptyOptions_ThrowsArgumentException()
     {
         // Arrange
-        TerminalSelectionOption[] options = Array.Empty<TerminalSelectionOption>();
+        TerminalSelectionOption[] options = [];
 
         // Act & Assert
         _ = Should.Throw<ArgumentException>(() => new TerminalSelectionPrompt("Choose an option:", options));
@@ -184,7 +184,7 @@ public class CliAbstractionsIntegrationTests
     public void TerminalTable_ConstructsWithColumns()
     {
         // Arrange
-        string[] columns = new[] { "Name", "Age", "City" };
+        string[] columns = ["Name", "Age", "City"];
         IReadOnlyList<TerminalTableRow> rows = Array.Empty<TerminalTableRow>();
 
         // Act
@@ -202,7 +202,7 @@ public class CliAbstractionsIntegrationTests
     public void TerminalTable_AddRow_AddsRowCorrectly()
     {
         // Arrange
-        string[] columns = new[] { "Name", "Age" };
+        string[] columns = ["Name", "Age"];
         IReadOnlyList<TerminalTableRow> rows = new[]
         {
             new TerminalTableRow(new[] { "Alice", "30" }),
@@ -224,7 +224,7 @@ public class CliAbstractionsIntegrationTests
     public void TerminalTable_AddRow_WithCorrectCellCount()
     {
         // Arrange
-        string[] columns = new[] { "Name", "Age" };
+        string[] columns = ["Name", "Age"];
         IReadOnlyList<TerminalTableRow> rows = new[] { new TerminalTableRow(new[] { "Alice", "30" }) };
 
         // Act
@@ -239,7 +239,7 @@ public class CliAbstractionsIntegrationTests
     public void TerminalTableRow_ConstructsWithCells()
     {
         // Arrange
-        string[] cells = new[] { "Cell1", "Cell2", "Cell3" };
+        string[] cells = ["Cell1", "Cell2", "Cell3"];
 
         // Act
         TerminalTableRow row = new TerminalTableRow(cells);

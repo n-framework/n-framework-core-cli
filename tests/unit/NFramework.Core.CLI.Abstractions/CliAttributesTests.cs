@@ -519,7 +519,7 @@ public class CliExampleAttributeTests
         public void CreatesAttribute_WithMultipleArguments()
         {
             // Arrange
-            string[] expectedArguments = new[] { "greet", "John", "--verbose" };
+            string[] expectedArguments = ["greet", "John", "--verbose"];
 
             // Act
             CliExampleAttribute attribute = new CliExampleAttribute(expectedArguments);
@@ -535,7 +535,7 @@ public class CliExampleAttributeTests
         public void ThrowsArgumentException_WhenNoArgumentsProvided()
         {
             // Act & Assert
-            _ = Should.Throw<ArgumentException>(() => new CliExampleAttribute(Array.Empty<string>()));
+            _ = Should.Throw<ArgumentException>(() => new CliExampleAttribute([]));
         }
     }
 
@@ -589,7 +589,7 @@ public class CliExampleAttributeTests
         public void HandlesManyArguments()
         {
             // Arrange
-            string[] arguments = Enumerable.Range(1, 100).Select(i => $"arg{i}").ToArray();
+            string[] arguments = [.. Enumerable.Range(1, 100).Select(i => $"arg{i}")];
 
             // Act
             CliExampleAttribute attribute = new CliExampleAttribute(arguments);
@@ -602,7 +602,7 @@ public class CliExampleAttributeTests
         public void HandlesSpecialCharactersInArguments()
         {
             // Arrange
-            string[] arguments = new[] { "command", "--option=value", "path/to/file.txt" };
+            string[] arguments = ["command", "--option=value", "path/to/file.txt"];
 
             // Act
             CliExampleAttribute attribute = new CliExampleAttribute(arguments);
